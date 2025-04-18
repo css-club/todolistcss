@@ -1,0 +1,27 @@
+{%extends 'base/base.html'%}
+{% block content %}
+<div class="header">
+    <h1>{% if task.id %}Edit Task{% else %}Create Task{% endif %}</h1>
+    <a id='back' href="{% url 'task' %}">Back</a>
+</div>
+<div class="card-body">
+    <form method='POST' action="">
+        {% csrf_token %}
+        <p>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" value="{{ task.title }}" required>
+        </p>
+        <p>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" rows="4">{{ task.description }}</textarea>
+        </p>
+        <p>
+            <label for="complete">
+                <input type="checkbox" name="complete" id="complete" {% if task.complete %}checked{% endif %}>
+                Complete
+            </label>
+        </p>
+        <input class='button' type="submit" value="Save Task">
+    </form>
+</div>
+{% endblock content %}

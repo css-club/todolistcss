@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="header">
+    <h1>Login</h1>
+</div>
+<div class="card-body">
+    <form action="" method='POST'>
+        {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error-message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <p>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+        </p>
+        <p>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+        </p>
+        <input class='button' type="submit" value="Login">
+        <p>
+            <a href="{% url 'register' %}">Don't have an account? Register</a>
+        </p>
+    </form>
+</div>
+{% endblock content %}
